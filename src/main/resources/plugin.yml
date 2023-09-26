@@ -1,6 +1,12 @@
-name: Force Item
+name: ForceItem
 version: '${project.version}'
 main: de.acktstudios.forceitem.Main
 api-version: '1.20'
-prefix: Force Item
+prefix: ForceItem
 authors: [Christoph]
+
+commands:
+  start:
+    description: Starts the Force Item game
+    usage: /start
+    aliases: [s]

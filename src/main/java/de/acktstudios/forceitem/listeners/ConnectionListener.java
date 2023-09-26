@@ -29,6 +29,11 @@ public class ConnectionListener implements Listener {
         Objective objective1 = Main.getScoreboard().registerNewObjective("showhealth", "health");
         objective1.setDisplaySlot(DisplaySlot.BELOW_NAME);
         objective1.setDisplayName("/ 20");
+
+        for (Player online: Bukkit.getOnlinePlayers()) {
+            online.setScoreboard(Main.getScoreboard());
+            online.setHealth(online.getHealth());
+        }
     }
 
     @EventHandler
