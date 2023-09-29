@@ -1,4 +1,4 @@
-package de.acktstudios.forceitem.Commands;
+package de.acktstudios.forceitem.commands;
 
 import de.acktstudios.forceitem.ForceItem.ForceItem;
 import de.acktstudios.forceitem.Main;
@@ -11,8 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class StartCommand implements CommandExecutor {
-
-    private String prefix = Main.getPrefix();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -29,6 +27,8 @@ public class StartCommand implements CommandExecutor {
             online.sendMessage("§aDein erstes Item: §6" + firstItem.getItemMeta().getDisplayName());
 
             online.setPlayerListName(online.getDisplayName() + " [§6" + firstItem.getItemMeta().getDisplayName() + "§f]");
+            Main.getInstance().getJokerController().giveJokers(2);
+            Main.getInstance().getTimer().setRunning(true);
 
             switch (online.getDisplayName()) {
                 case "SharpChart92853":

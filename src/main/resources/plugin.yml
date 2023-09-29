@@ -10,3 +10,7 @@ commands:
     description: Starts the Force Item game
     usage: /start
     aliases: [s]
+  timer:
+    description: Controls the timer with start, stop and reset
+    usage: /timer
+    aliases: [t]

@@ -17,6 +17,8 @@ public class Timer {
 
     public Timer() {
         this.running = false;
+
+        run();
     }
 
     public boolean isRunning() {

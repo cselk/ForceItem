@@ -1,4 +1,4 @@
-package de.acktstudios.forceitem.Commands;
+package de.acktstudios.forceitem.commands;
 
 import de.acktstudios.forceitem.Main;
 import de.acktstudios.forceitem.Timer.Timer;
@@ -11,6 +11,7 @@ public class TimerCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         String prefix = Main.getTimerPrefix();
+        Timer timer = Main.getInstance().getTimer();
 
         if (args.length == 0){
             sender.sendMessage(prefix + "§7Verwendung§8: §9/timer start, /timer stop, /timer reset");
@@ -19,7 +20,6 @@ public class TimerCommand implements CommandExecutor {
 
         switch (args[0].toLowerCase()){
             case "start": {
-                Timer timer = Main.getInstance().getTimer();
 
                 if (timer.isRunning()) {
                     sender.sendMessage(prefix + "§cDer Timer läuft bereits!");
@@ -31,7 +31,6 @@ public class TimerCommand implements CommandExecutor {
                 break;
             }
             case "stop": {
-                Timer timer = Main.getInstance().getTimer();
                 if (!timer.isRunning()) {
                     sender.sendMessage(prefix + "§cDer Timer läuft bereits!");
                     break;
@@ -42,7 +41,6 @@ public class TimerCommand implements CommandExecutor {
                 break;
             }
             case "reset":{
-                Timer timer = Main.getInstance().getTimer();
                 timer.setRunning(false);
                 timer.setTime(0);
                 timer.setMinutes(0);
