@@ -11,27 +11,31 @@ public class ItemCollect implements Listener {
 
     @EventHandler
     public void onPickup(PlayerPickupItemEvent event) {
-        Player player = event.getPlayer();
 
-        if (player.getDisplayName().equals("Gamerspike11")) {
+        if (!ForceItem.isEnded()) {
 
-            if (event.getItem().getItemStack().getType().equals(Main.cItemStats.currentItem.getType())) {
+            Player player = event.getPlayer();
 
-                player.sendMessage("§aDu hast gefunden: §6" + Main.cItemStats.currentItem.getItemMeta().getDisplayName());
-                player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
+            if (player.getDisplayName().equals("Gamerspike11")) {
 
-                ItemStack newItem = ForceItem.getRandomStack();
+                if (event.getItem().getItemStack().getType().equals(Main.cItemStats.currentItem.getType())) {
 
-                if (Main.cItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
-                    newItem = ForceItem.getRandomStack();
+                    player.sendMessage("§aDu hast gefunden: §6" + Main.cItemStats.currentItem.getItemMeta().getDisplayName());
+                    player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
+
+                    ItemStack newItem = ForceItem.getRandomStack();
+
+                    if (Main.cItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                        newItem = ForceItem.getRandomStack();
+                    }
+
+                    Main.cItemStats.addItem(newItem);
+
+                    player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                    player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                } else {
+                    System.out.println("Wrong item");
                 }
-
-                Main.cItemStats.addItem(newItem);
-
-                player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
-                player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
-            } else {
-                System.out.println("Wrong item");
             }
         }
     }

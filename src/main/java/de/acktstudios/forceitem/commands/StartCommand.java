@@ -28,7 +28,6 @@ public class StartCommand implements CommandExecutor {
 
             online.setPlayerListName(online.getDisplayName() + " [§6" + firstItem.getItemMeta().getDisplayName() + "§f]");
             Main.getInstance().getJokerController().giveJokers(2);
-            Main.getInstance().getTimer().setRunning(true);
 
             switch (online.getDisplayName()) {
                 case "SharpChart92853":
@@ -46,6 +45,14 @@ public class StartCommand implements CommandExecutor {
                 default:
                     System.out.println("The player is not registered!");
                     break;
+            }
+
+
+            try {
+                Main.getInstance().getTimer().setTime(Integer.parseInt(args[0]));
+                Main.getInstance().getTimer().setRunning(true);
+            } catch (NumberFormatException e) {
+                sender.sendMessage("§cParameter 2 must be a number");
             }
 
         }

@@ -1,5 +1,7 @@
 package de.acktstudios.forceitem.Timer;
 
+import de.acktstudios.forceitem.ForceItem.ForceItem;
+import de.acktstudios.forceitem.ForceItem.ItemStats;
 import de.acktstudios.forceitem.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -11,12 +13,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class Timer {
 
     private boolean running;
-    public static int time;
-    public static int minutes;
-    public static int hours;
+    public int time;
 
     public Timer() {
         this.running = false;
+        this.time = 0;
 
         run();
     }
@@ -24,45 +25,48 @@ public class Timer {
     public boolean isRunning() {
         return running;
     }
+
     public void setRunning(boolean running) {
         this.running = running;
     }
-    public static int getTime() {
+
+    public int getTime() {
         return time;
     }
-    public static void setTime(int time) {
-        Timer.time = time;
-    }
-    public static int getMinutes() {
-        return minutes;
-    }
-    public static void setMinutes(int minutes) {
-        Timer.minutes = minutes;
-    }
-    public static int getHours() {
-        return hours;
-    }
-    public static void setHours(int hours) {
-        Timer.hours = hours;
+
+    public void setTime(int time) {
+        this.time = time;
     }
 
     public void sendActionBar() {
-        for (Player player: Bukkit.getOnlinePlayers()) {
-            time = getTime();
-            if (time < 60) {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GOLD.toString() + ChatColor.BOLD + hours + "h " + minutes + "m " + getTime() + "s"));
-            }
-            if (time >= 60){
-                minutes++;
-                time = 0;
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GOLD.toString() + ChatColor.BOLD + hours + "h " + minutes + "m " + getTime() + "s"));
-            }
-            if (minutes >= 60){
-                hours++;
-                minutes = 0;
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GOLD.toString() + ChatColor.BOLD + hours + "h " + minutes + "m " + getTime() + "s"));
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (isRunning()) {
+
+                switch (player.getDisplayName()) {
+                    case "SharpChart92853":
+                        showText(player, Main.aItemStats);
+                        break;
+                    case "Gamerspike11":
+                        showText(player, Main.cItemStats);
+                        break;
+                    default:
+                        player.sendMessage("§cYou are not registered!");
+                        break;
+                }
+
             }
         }
+    }
+
+    private void showText(Player player, ItemStats stats) {
+        int hours = time / 3600;
+        int minutes = (time % 3600) / 60;
+        int seconds = time % 60;
+
+        String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                new TextComponent(ChatColor.GOLD.toString() + ChatColor.BOLD + timeString + " - " + stats.currentItem.getItemMeta().getDisplayName()));
     }
 
     private void run() {
@@ -70,13 +74,25 @@ public class Timer {
             @Override
             public void run() {
                 sendActionBar();
-                if (!isRunning()) {
-                    return;
-                }
 
-                setTime(getTime() + 1);
+                if (isRunning()) {
+                    setTime(getTime() - 1);
+
+                    if (getTime() <= 0) {
+                        stopTimer();
+                    }
+                }
             }
         }.runTaskTimer(Main.getInstance(), 20, 20);
     }
 
+    private void stopTimer() {
+        setRunning(false);
+
+        ForceItem.setEnded(true);
+
+        for (Player player: Bukkit.getOnlinePlayers()) {
+            player.teleport(player.getWorld().getSpawnLocation());
+        }
+    }
 }

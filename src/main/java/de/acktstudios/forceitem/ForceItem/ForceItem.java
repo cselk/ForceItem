@@ -8,6 +8,8 @@ import java.util.Random;
 
 public class ForceItem {
 
+    private static boolean ended = false;
+
     public static ItemStack getRandomStack() {
 
         Material material = Material.values()[new Random().nextInt(Material.values().length)];
@@ -29,7 +31,10 @@ public class ForceItem {
 
     }
 
-    public static void getNewItem() {
-
+    public static boolean isEnded() {
+        return ended;
+    }
+    public static void setEnded(boolean ended) {
+        ForceItem.ended = ended;
     }
 }

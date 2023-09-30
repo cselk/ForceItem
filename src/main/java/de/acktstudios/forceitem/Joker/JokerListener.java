@@ -5,6 +5,7 @@ import de.acktstudios.forceitem.ForceItem.ForceItem;
 import de.acktstudios.forceitem.Main;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,47 +24,54 @@ public class JokerListener implements Listener {
             ItemStack clickedItem = event.getItem();
             Player player = event.getPlayer();
 
-            if (clickedItem != null && clickedItem.getType() == Material.BARRIER) {
-                ItemMeta meta = clickedItem.getItemMeta();
+            if (!ForceItem.isEnded()) {
 
-                // Überprüfe, ob der benutzerdefinierte Teil im PersistentDataContainer vorhanden ist
-                if (meta != null) {
-                    NamespacedKey key = new NamespacedKey("de_acktstudios_forceitem", "joker");
-                    Byte jokerValue = meta.getPersistentDataContainer().get(key, PersistentDataType.BYTE);
+                if (clickedItem != null && clickedItem.getType() == Material.BARRIER) {
+                    ItemMeta meta = clickedItem.getItemMeta();
 
-                    if (jokerValue != null && jokerValue == (byte) 1) {
-                        player.getInventory().remove(clickedItem);
-                        player.sendMessage("§cYou used a joker!");
+                    // Überprüfe, ob der benutzerdefinierte Teil im PersistentDataContainer vorhanden ist
+                    if (meta != null) {
+                        NamespacedKey key = new NamespacedKey("de_acktstudios_forceitem", "joker");
+                        Byte jokerValue = meta.getPersistentDataContainer().get(key, PersistentDataType.BYTE);
 
-                        ItemStack newItem = ForceItem.getRandomStack();
+                        if (jokerValue != null && jokerValue == (byte) 1) {
 
-                        switch (player.getDisplayName()) {
-                            case "SharpChart92853":
-                                if (Main.aItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
-                                    newItem = ForceItem.getRandomStack();
-                                }
+                            ItemStack hand = player.getInventory().getItemInHand();
+                            hand.setAmount(hand.getAmount() - 1);
+                            player.getInventory().setItemInHand(hand);
 
-                                Main.aItemStats.addItem(newItem);
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 1.0f);
 
-                                player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
-                                player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
-                                break;
-                            case "Gamerspike11":
-                                if (Main.cItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
-                                    newItem = ForceItem.getRandomStack();
-                                }
+                            ItemStack newItem = ForceItem.getRandomStack();
 
-                                Main.cItemStats.addItem(newItem);
+                            switch (player.getDisplayName()) {
+                                case "SharpChart92853":
+                                    if (Main.aItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                                        newItem = ForceItem.getRandomStack();
+                                    }
 
-                                player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
-                                player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
-                                break;
-                            default:
-                                player.sendMessage("§cYou are not registered!");
+                                    Main.aItemStats.addItem(newItem);
+
+                                    player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                                    player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                                    break;
+                                case "Gamerspike11":
+                                    if (Main.cItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                                        newItem = ForceItem.getRandomStack();
+                                    }
+
+                                    Main.cItemStats.addItem(newItem);
+
+                                    player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                                    player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                                    break;
+                                default:
+                                    player.sendMessage("§cYou are not registered!");
+                            }
+
+
+                            event.setCancelled(true); // Verhindere, dass der Barrier-Block platziert wird
                         }
-
-
-                        event.setCancelled(true); // Verhindere, dass der Barrier-Block platziert wird
                     }
                 }
             }
