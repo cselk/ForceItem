@@ -1,6 +1,5 @@
 package de.acktstudios.forceitem.ForceItem;
 
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -18,11 +17,25 @@ public class ItemStats {
         this.playerName = playerName;
     }
 
-    public void addItem(ItemStack itemStack) {
+    public void addItem(ItemStack itemStack, boolean init) {
         items.add(itemStack.getItemMeta().getDisplayName());
         currentItem = itemStack;
-        amount++;
+
+        if (!init) {
+            amount++;
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -42,30 +55,39 @@ public class ItemStats {
     public String getPlayerName() {
         return playerName;
     }
+
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
+
     public List<String> getItems() {
         return items;
     }
+
     public void setItems(List<String> items) {
         this.items = items;
     }
+
     public ItemStack getCurrentItem() {
         return currentItem;
     }
+
     public void setCurrentItem(ItemStack currentItem) {
         this.currentItem = currentItem;
     }
+
     public int getAmount() {
         return amount;
     }
+
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
     public int getJokerCount() {
         return jokerCount;
     }
+
     public void setJokerCount(int jokerCount) {
         this.jokerCount = jokerCount;
     }

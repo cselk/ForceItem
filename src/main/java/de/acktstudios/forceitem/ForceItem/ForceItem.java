@@ -1,5 +1,6 @@
 package de.acktstudios.forceitem.ForceItem;
 
+import de.acktstudios.forceitem.utils.StringConverter;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -19,7 +20,7 @@ public class ForceItem {
 
             // Holen Sie sich die ItemMeta und setzen Sie den DisplayName auf den Namen des Materials
             ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.setDisplayName(material.toString()); // Setzen Sie den DisplayName auf den Namen des Materials
+            itemMeta.setDisplayName(StringConverter.convert(material.toString())); // Setzen Sie den DisplayName auf den Namen des Materials
 
             // Setzen Sie die aktualisierte ItemMeta zurück zum ItemStack
             itemStack.setItemMeta(itemMeta);

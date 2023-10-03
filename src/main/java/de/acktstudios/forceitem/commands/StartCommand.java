@@ -15,46 +15,57 @@ public class StartCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        Bukkit.broadcastMessage("§aForce Item wurde gestartet!");
+        if (args.length == 2) {
 
-        // Loop for all online players
-        for (Player online : Bukkit.getOnlinePlayers()) {
-            online.getInventory().clear();
-            online.setGameMode(GameMode.SURVIVAL);
+            Bukkit.broadcastMessage("§aForce Item wurde gestartet!");
 
-            ItemStack firstItem = ForceItem.getRandomStack();
+            // Loop for all online players
+            for (Player online : Bukkit.getOnlinePlayers()) {
+                online.getInventory().clear();
+                online.setGameMode(GameMode.SURVIVAL);
 
-            online.sendMessage("§aDein erstes Item: §6" + firstItem.getItemMeta().getDisplayName());
+                ItemStack firstItem = ForceItem.getRandomStack();
 
-            online.setPlayerListName(online.getDisplayName() + " [§6" + firstItem.getItemMeta().getDisplayName() + "§f]");
-            Main.getInstance().getJokerController().giveJokers(2);
+                online.sendMessage("§aDein erstes Item: §6" + firstItem.getItemMeta().getDisplayName());
 
-            switch (online.getDisplayName()) {
-                case "SharpChart92853":
-                    Main.aItemStats.addItem(firstItem);
-                    break;
-                case "Gamerspike11":
-                    Main.cItemStats.addItem(firstItem);
-                    break;
-                case "TastyHalumi":
-                    Main.kItemStats.addItem(firstItem);
-                    break;
-                case "TB_360":
-                    Main.tItemStats.addItem(firstItem);
-                    break;
-                default:
-                    System.out.println("The player is not registered!");
-                    break;
+                online.setPlayerListName(online.getDisplayName() + " [§6" + firstItem.getItemMeta().getDisplayName() + "§f]");
+
+                try {
+                    Main.getInstance().getJokerController().giveJokers(Integer.parseInt(args[1]));
+                } catch (NumberFormatException e) {
+                    sender.sendMessage("§c Parameter 2 must be a numberr!");
+                }
+
+                switch (online.getDisplayName()) {
+                    case "SharpChart92853":
+                        Main.aItemStats.addItem(firstItem, true);
+                        break;
+                    case "Gamerspike11":
+                        Main.cItemStats.addItem(firstItem, true);
+                        break;
+                    case "TastyHalumi":
+                        Main.kItemStats.addItem(firstItem, true);
+                        break;
+                    case "TB_360":
+                        Main.tItemStats.addItem(firstItem, true);
+                        break;
+                    default:
+                        System.out.println("The player is not registered!");
+                        break;
+                }
+
+
+                try {
+                    Main.getInstance().getTimer().setTime(Integer.parseInt(args[0]));
+                    Main.getInstance().getTimer().setRunning(true);
+                } catch (NumberFormatException e) {
+                    sender.sendMessage("§cParameter 1 must be a number!");
+                }
+
             }
 
-
-            try {
-                Main.getInstance().getTimer().setTime(Integer.parseInt(args[0]));
-                Main.getInstance().getTimer().setRunning(true);
-            } catch (NumberFormatException e) {
-                sender.sendMessage("§cParameter 2 must be a number");
-            }
-
+        } else {
+            sender.sendMessage("§7Usage§8: §9/start <time> <jokerAmount>");
         }
 
         return true;

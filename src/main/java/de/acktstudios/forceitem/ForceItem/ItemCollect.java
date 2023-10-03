@@ -29,7 +29,7 @@ public class ItemCollect implements Listener {
                         newItem = ForceItem.getRandomStack();
                     }
 
-                    Main.cItemStats.addItem(newItem);
+                    Main.cItemStats.addItem(newItem, false);
 
                     player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
                     player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
