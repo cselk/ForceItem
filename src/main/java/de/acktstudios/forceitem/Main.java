@@ -3,6 +3,7 @@ package de.acktstudios.forceitem;
 import de.acktstudios.forceitem.ForceItem.ItemCollect;
 import de.acktstudios.forceitem.ForceItem.ItemStats;
 import de.acktstudios.forceitem.Joker.JokerListener;
+import de.acktstudios.forceitem.commands.ResultCommand;
 import de.acktstudios.forceitem.commands.StartCommand;
 import de.acktstudios.forceitem.Joker.JokerController;
 import de.acktstudios.forceitem.Timer.Timer;
@@ -55,6 +56,7 @@ public final class Main extends JavaPlugin {
 
         getCommand("start").setExecutor(new StartCommand());
         getCommand("timer").setExecutor(new TimerCommand());
+        getCommand("result").setExecutor(new ResultCommand());
     }
 
     @Override
@@ -71,9 +73,11 @@ public final class Main extends JavaPlugin {
     public static Players getPlayers() {
         return players;
     }
+
     public static String getPrefix() {
         return Prefix;
     }
+
     public static String getTimerPrefix() {
         return TimerPrefix;
     }
@@ -81,6 +85,7 @@ public final class Main extends JavaPlugin {
     public Timer getTimer() {
         return timer;
     }
+
     public JokerController getJokerController() {
         return jokerController;
     }
@@ -88,6 +93,7 @@ public final class Main extends JavaPlugin {
     public static ScoreboardManager getScoreboardManager() {
         return scoreboardManager;
     }
+
     public static Scoreboard getScoreboard() {
         return scoreboard;
     }
