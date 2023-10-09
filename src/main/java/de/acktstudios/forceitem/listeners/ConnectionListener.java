@@ -34,6 +34,8 @@ public class ConnectionListener implements Listener {
             online.setScoreboard(Main.getScoreboard());
             online.setHealth(online.getHealth());
         }
+
+        Main.getInstance().getTablistManager().setPlayerList(player);
     }
 
     @EventHandler

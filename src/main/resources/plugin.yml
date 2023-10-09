@@ -18,3 +18,7 @@ commands:
     description: Get the end result of the event
     usage: /result
     aliases: [r]
+  position:
+    description: Saves the position you are
+    usage: /position
+    aliases: [pos]

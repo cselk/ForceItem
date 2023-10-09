@@ -3,6 +3,7 @@ package de.acktstudios.forceitem.Timer;
 import de.acktstudios.forceitem.ForceItem.ForceItem;
 import de.acktstudios.forceitem.ForceItem.ItemStats;
 import de.acktstudios.forceitem.Main;
+import de.acktstudios.forceitem.utils.Config;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -84,6 +85,12 @@ public class Timer {
                 }
             }
         }.runTaskTimer(Main.getInstance(), 20, 20);
+    }
+
+    public void save() {
+        Config config = Main.getInstance().getConfiguration();
+
+        config.getConfig().set("timer.time", time);
     }
 
     private void stopTimer() {

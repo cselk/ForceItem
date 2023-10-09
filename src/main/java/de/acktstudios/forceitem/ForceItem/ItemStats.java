@@ -12,6 +12,7 @@ public class ItemStats {
     public ItemStack currentItem;
     private int amount = 0;
     private int jokerCount = 0;
+    private int jokersUsed = 0;
 
     public ItemStats(String playerName) {
         this.playerName = playerName;
