@@ -16,26 +16,47 @@ public class ItemCollect implements Listener {
 
             Player player = event.getPlayer();
 
-            if (player.getDisplayName().equals("Gamerspike11")) {
+            switch (player.getDisplayName()) {
+                case "Gamerspike11":
 
-                if (event.getItem().getItemStack().getType().equals(Main.cItemStats.currentItem.getType())) {
+                    if (event.getItem().getItemStack().getType().equals(Main.cItemStats.currentItem.getType())) {
 
-                    player.sendMessage("§aDu hast gefunden: §6" + Main.cItemStats.currentItem.getItemMeta().getDisplayName());
-                    player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
+                        player.sendMessage("§aDu hast gefunden: §6" + Main.cItemStats.currentItem.getItemMeta().getDisplayName());
+                        player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
 
-                    ItemStack newItem = ForceItem.getRandomStack();
+                        ItemStack newItem = ForceItem.getRandomStack();
 
-                    if (Main.cItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
-                        newItem = ForceItem.getRandomStack();
+                        if (Main.cItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                            newItem = ForceItem.getRandomStack();
+                        }
+
+                        Main.cItemStats.addItem(newItem, false);
+
+                        player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                        player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
                     }
+                    break;
+                case "SharpChart92853":
 
-                    Main.cItemStats.addItem(newItem, false);
+                    if (event.getItem().getItemStack().getType().equals(Main.aItemStats.currentItem.getType())) {
 
-                    player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
-                    player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
-                } else {
-                    System.out.println("Wrong item");
-                }
+                        player.sendMessage("§aDu hast gefunden: §6" + Main.aItemStats.currentItem.getItemMeta().getDisplayName());
+                        player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
+
+                        ItemStack newItem = ForceItem.getRandomStack();
+
+                        if (Main.aItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                            newItem = ForceItem.getRandomStack();
+                        }
+
+                        Main.aItemStats.addItem(newItem, false);
+
+                        player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                        player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                    }
+                    break;
+                default:
+                    player.sendMessage("§cYou are not registered");
             }
         }
     }

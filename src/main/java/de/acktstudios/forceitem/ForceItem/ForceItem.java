@@ -12,24 +12,27 @@ public class ForceItem {
     private static boolean ended = false;
 
     public static ItemStack getRandomStack() {
+        Material material;
 
-        Material material = Material.values()[new Random().nextInt(Material.values().length)];
+        do {
+            material = Material.values()[new Random().nextInt(Material.values().length)];
+        } while (isSpawnEgg(material) || !material.isItem());
 
-        if (!material.isLegacy() || !material.isAir() || !material.isSolid() || material.equals(Material.AIR)) {
-            ItemStack itemStack = new ItemStack(material);
+        ItemStack itemStack = new ItemStack(material);
 
-            // Holen Sie sich die ItemMeta und setzen Sie den DisplayName auf den Namen des Materials
-            ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.setDisplayName(StringConverter.convert(material.toString())); // Setzen Sie den DisplayName auf den Namen des Materials
+        // Holen Sie sich die ItemMeta und setzen Sie den DisplayName auf den Namen des Materials
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(StringConverter.convert(material.toString())); // Setzen Sie den DisplayName auf den Namen des Materials
 
-            // Setzen Sie die aktualisierte ItemMeta zurück zum ItemStack
-            itemStack.setItemMeta(itemMeta);
+        // Setzen Sie die aktualisierte ItemMeta zurück zum ItemStack
+        itemStack.setItemMeta(itemMeta);
 
-            return itemStack;
-        }
+        return itemStack;
+    }
 
-        return getRandomStack();
-
+    private static boolean isSpawnEgg(Material material) {
+        // Überprüfen Sie hier, ob das Material ein Spawn-Egg ist
+        return material.name().endsWith("_SPAWN_EGG");
     }
 
     public static boolean isEnded() {

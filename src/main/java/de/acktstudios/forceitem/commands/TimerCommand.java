@@ -19,26 +19,14 @@ public class TimerCommand implements CommandExecutor {
         }
 
         switch (args[0].toLowerCase()) {
-            case "start": {
-
-                if (args.length != 2) {
-                    sender.sendMessage(prefix + "§7Usage§8: §9/timer start <time>");
-                    return true;
-                }
+            case "resume": {
 
                 if (timer.isRunning()) {
                     sender.sendMessage(prefix + "§cDer Timer läuft bereits!");
                     break;
                 }
 
-                try {
-                    int time = Integer.parseInt(args[1]);
-                    timer.setTime(time);
                     timer.setRunning(true);
-                    sender.sendMessage(prefix + "Der Timer wurde §agestartet§b!");
-                } catch (NumberFormatException e) {
-                    sender.sendMessage(prefix + "§cDer zweite Parameter muss eine Zahl sein.");
-                }
                 break;
             }
             case "stop": {

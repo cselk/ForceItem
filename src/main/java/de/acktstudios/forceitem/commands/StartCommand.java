@@ -33,7 +33,7 @@ public class StartCommand implements CommandExecutor {
                 try {
                     Main.getInstance().getJokerController().giveJokers(Integer.parseInt(args[1]));
                 } catch (NumberFormatException e) {
-                    sender.sendMessage("§c Parameter 2 must be a numberr!");
+                    sender.sendMessage("§c Parameter 2 must be a number!");
                 }
 
                 switch (online.getDisplayName()) {

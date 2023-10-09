@@ -46,6 +46,8 @@ public class JokerListener implements Listener {
 
                             switch (player.getDisplayName()) {
                                 case "SharpChart92853":
+                                    player.getInventory().addItem(Main.aItemStats.currentItem);
+
                                     if (Main.aItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
                                         newItem = ForceItem.getRandomStack();
                                     }
@@ -56,6 +58,8 @@ public class JokerListener implements Listener {
                                     player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
                                     break;
                                 case "Gamerspike11":
+                                    player.getInventory().addItem(Main.cItemStats.currentItem);
+
                                     if (Main.cItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
                                         newItem = ForceItem.getRandomStack();
                                     }
@@ -82,6 +86,7 @@ public class JokerListener implements Listener {
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         ItemStack itemInHand = event.getItemInHand();
+        Player player = event.getPlayer();
 
         if (itemInHand != null && itemInHand.getType() == Material.BARRIER) {
             ItemMeta meta = itemInHand.getItemMeta();
@@ -92,11 +97,47 @@ public class JokerListener implements Listener {
                 Byte jokerValue = meta.getPersistentDataContainer().get(key, PersistentDataType.BYTE);
 
                 if (jokerValue != null && jokerValue == (byte) 1) {
-                    // Das Item ist ein Joker
-                    event.getPlayer().sendMessage("§cYou used a Joker!");
-                    // Hier kannst du zusätzlichen Code für den Joker hinzufügen
-                    event.setCancelled(true); // Verhindere, dass der Barrier-Block platziert wird
-                }
+
+                            ItemStack hand = player.getInventory().getItemInHand();
+                            hand.setAmount(hand.getAmount() - 1);
+                            player.getInventory().setItemInHand(hand);
+
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 1.0f);
+
+                            ItemStack newItem = ForceItem.getRandomStack();
+
+                            switch (player.getDisplayName()) {
+                                case "SharpChart92853":
+                                    player.getInventory().addItem(Main.aItemStats.currentItem);
+
+                                    if (Main.aItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                                        newItem = ForceItem.getRandomStack();
+                                    }
+
+                                    Main.aItemStats.addItem(newItem, false);
+
+                                    player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                                    player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                                    break;
+                                case "Gamerspike11":
+                                    player.getInventory().addItem(Main.cItemStats.currentItem);
+
+                                    if (Main.cItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                                        newItem = ForceItem.getRandomStack();
+                                    }
+
+                                    Main.cItemStats.addItem(newItem, false);
+
+                                    player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                                    player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                                    break;
+                                default:
+                                    player.sendMessage("§cYou are not registered!");
+                            }
+
+
+                            event.setCancelled(true); // Verhindere, dass der Barrier-Block platziert wird
+                        }
             }
         }
     }
