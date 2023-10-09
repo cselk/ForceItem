@@ -23,11 +23,11 @@ public class PosSaveCommand implements CommandExecutor {
 
                 if (config.getConfig().isSet("position." + args[0])) {
 
-                    sender.sendMessage(prefix + "§6 " + args[0] + " §fliegt bei §6" + config.getConfig().get("position." + args[0]));
+                    sender.sendMessage(prefix + "§6 " + args[0] + " §fliegt bei §6" + config.getConfig().get("position." + ((Player) sender).getDisplayName() + args[0]));
 
                 } else {
 
-                    config.getConfig().set("position." + args[0], (int) ((Player) sender).getLocation().getBlockX() + " " + (int) ((Player) sender).getLocation().getBlockY() + " " + (int) ((Player) sender).getLocation().getBlockZ());
+                    config.getConfig().set("position." + ((Player) sender).getDisplayName() + args[0], (int) ((Player) sender).getLocation().getBlockX() + " " + (int) ((Player) sender).getLocation().getBlockY() + " " + (int) ((Player) sender).getLocation().getBlockZ());
                     sender.sendMessage(prefix + "§6" + args[0] + " §fwurde gespeichert!");
 
                 }
