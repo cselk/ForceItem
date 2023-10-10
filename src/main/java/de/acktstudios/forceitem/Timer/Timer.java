@@ -50,6 +50,9 @@ public class Timer {
                     case "Gamerspike11":
                         showText(player, Main.cItemStats);
                         break;
+                    case "TB_360":
+                        showText(player, Main.tItemStats);
+                        break;
                     default:
                         player.sendMessage("§cYou are not registered!");
                         break;

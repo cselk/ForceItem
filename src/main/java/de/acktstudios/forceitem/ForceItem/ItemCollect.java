@@ -55,6 +55,25 @@ public class ItemCollect implements Listener {
                         player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
                     }
                     break;
+                    case "TB_360":
+
+                    if (event.getItem().getItemStack().getType().equals(Main.tItemStats.currentItem.getType())) {
+
+                        player.sendMessage("§aDu hast gefunden: §6" + Main.tItemStats.currentItem.getItemMeta().getDisplayName());
+                        player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
+
+                        ItemStack newItem = ForceItem.getRandomStack();
+
+                        if (Main.tItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                            newItem = ForceItem.getRandomStack();
+                        }
+
+                        Main.tItemStats.addItem(newItem, false);
+
+                        player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                        player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                    }
+                    break;
                 default:
                     player.sendMessage("§cYou are not registered");
             }
