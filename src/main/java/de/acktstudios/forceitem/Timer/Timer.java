@@ -14,11 +14,17 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class Timer {
 
     private boolean running;
-    public int time;
+    private int time;
 
     public Timer() {
+        Config config = Main.getInstance().getConfiguration();
+
         this.running = false;
         this.time = 0;
+
+        if (config.getConfig().contains("timer.time")) {
+            this.time = config.getConfig().getInt("timer.time");
+        }
 
         run();
     }
