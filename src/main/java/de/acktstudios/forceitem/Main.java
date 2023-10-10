@@ -15,13 +15,9 @@ import de.acktstudios.forceitem.utils.Config;
 import de.acktstudios.forceitem.utils.Players;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
-
-import java.io.File;
-import java.io.IOException;
 
 public final class Main extends JavaPlugin {
 
@@ -42,6 +38,13 @@ public final class Main extends JavaPlugin {
     public static ItemStats cItemStats = new ItemStats("Gamerspike11");
     public static ItemStats kItemStats = new ItemStats("TastyHalumi");
     public static ItemStats tItemStats = new ItemStats("TB_360");
+
+    private static ItemStats[] itemStats = {
+            aItemStats,
+            cItemStats,
+            kItemStats,
+            tItemStats
+    };
 
     private static Main instance;
 
@@ -76,6 +79,11 @@ public final class Main extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         timer.save();
+
+        for (ItemStats stats : itemStats) {
+            stats.save();
+        }
+
         config.save();
     }
 

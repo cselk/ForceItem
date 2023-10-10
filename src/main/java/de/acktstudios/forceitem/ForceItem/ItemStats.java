@@ -1,5 +1,7 @@
 package de.acktstudios.forceitem.ForceItem;
 
+import de.acktstudios.forceitem.Main;
+import de.acktstudios.forceitem.utils.Config;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -8,10 +10,10 @@ import java.util.List;
 public class ItemStats {
 
     private String playerName;
-    public List<String> items = new ArrayList<>();
+    public List<ItemStack> items = new ArrayList<>();
     public ItemStack currentItem;
     private int amount = 0;
-    private int jokerCount = 0;
+    private int jokerAmount = 0;
     private int jokersUsed = 0;
 
     public ItemStats(String playerName) {
@@ -19,7 +21,7 @@ public class ItemStats {
     }
 
     public void addItem(ItemStack itemStack, boolean init) {
-        items.add(itemStack.getItemMeta().getDisplayName());
+        items.add(itemStack);
         currentItem = itemStack;
 
         if (!init) {
@@ -27,29 +29,36 @@ public class ItemStats {
         }
     }
 
+    public boolean useJoker() {
+        if (jokersUsed < jokerAmount) {
+            jokersUsed++;
+            return true;
+        }
 
+        return false;
+    }
 
+    public void save() {
+        Config config = Main.getInstance().getConfiguration();
+        String path = "ItemStats." + playerName;
 
+        config.getConfig().set(path + ".playerName", playerName);
+        config.getConfig().set(path + ".amount", amount);
+        config.getConfig().set(path + ".jokerAmount", jokerAmount);
+        config.getConfig().set(path + ".jokersUsed", jokersUsed);
 
+        // Save items
+        List<String> serializedItems = new ArrayList<>();
+        for (ItemStack item : items) {
+            serializedItems.add(item.serialize().toString());
+        }
+        config.getConfig().set(path + ".items", serializedItems);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // Save current item
+        if (currentItem != null) {
+            config.getConfig().set(path + ".currentItem", currentItem.serialize().toString());
+        }
+    }
 
 
     // GETTERS & SETTERS
@@ -61,11 +70,11 @@ public class ItemStats {
         this.playerName = playerName;
     }
 
-    public List<String> getItems() {
+    public List<ItemStack> getItems() {
         return items;
     }
 
-    public void setItems(List<String> items) {
+    public void setItems(List<ItemStack> items) {
         this.items = items;
     }
 
@@ -85,11 +94,19 @@ public class ItemStats {
         this.amount = amount;
     }
 
-    public int getJokerCount() {
-        return jokerCount;
+    public int getJokerAmount() {
+        return jokerAmount;
     }
 
-    public void setJokerCount(int jokerCount) {
-        this.jokerCount = jokerCount;
+    public void setJokerAmount(int jokerCount) {
+        this.jokerAmount = jokerCount;
+    }
+
+    public int getJokersUsed() {
+        return jokersUsed;
+    }
+
+    public void setJokersUsed(int jokersUsed) {
+        this.jokersUsed = jokersUsed;
     }
 }
