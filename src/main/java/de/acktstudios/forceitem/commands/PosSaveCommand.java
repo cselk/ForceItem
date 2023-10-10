@@ -23,7 +23,7 @@ public class PosSaveCommand implements CommandExecutor {
 
                 if (config.getConfig().isSet("position." + ((Player) sender).getDisplayName() + "." + args[0])) {
 
-                    sender.sendMessage(prefix + "§6 " + args[0] + " §fliegt bei §6" + config.getConfig().get("position." + ((Player) sender).getDisplayName() + "." + args[0]));
+                    sender.sendMessage(prefix + "§6" + args[0] + " §fliegt bei §6" + config.getConfig().get("position." + ((Player) sender).getDisplayName() + "." + args[0]));
 
                 } else {
 

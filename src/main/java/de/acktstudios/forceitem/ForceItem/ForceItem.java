@@ -20,6 +20,12 @@ public class ForceItem {
 
         ItemStack itemStack = new ItemStack(material);
 
+        while (itemStack.getType().equals("REINFORCED_DEEPSLATE") || itemStack.getType().equals("JIGSAW") || itemStack.getType().equals("BEDROCK") || itemStack.getType().equals("BARRIER")) {
+            material = Material.values()[new Random().nextInt(Material.values().length)];
+        }
+
+        itemStack = new ItemStack(material);
+
         // Holen Sie sich die ItemMeta und setzen Sie den DisplayName auf den Namen des Materials
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(StringConverter.convert(material.toString())); // Setzen Sie den DisplayName auf den Namen des Materials
@@ -38,6 +44,7 @@ public class ForceItem {
     public static boolean isEnded() {
         return ended;
     }
+
     public static void setEnded(boolean ended) {
         ForceItem.ended = ended;
     }
