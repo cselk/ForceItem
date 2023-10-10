@@ -12,7 +12,7 @@ public class Config {
 
     public Config() {
 
-        File dir = new File("./plugins/Timer/");
+        File dir = new File("./plugins/ForceItem/");
 
         if (!dir.exists()){
             dir.mkdirs();
