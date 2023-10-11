@@ -34,17 +34,12 @@ public final class Main extends JavaPlugin {
 
     private Config config;
 
-    public static ItemStats aItemStats = new ItemStats("SharpChart92853");
-    public static ItemStats cItemStats = new ItemStats("Gamerspike11");
-    public static ItemStats kItemStats = new ItemStats("TastyHalumi");
-    public static ItemStats tItemStats = new ItemStats("TB_360");
+    public static ItemStats aItemStats;
+    public static ItemStats cItemStats;
+    public static ItemStats kItemStats;
+    public static ItemStats tItemStats;
 
-    private static ItemStats[] itemStats = {
-            aItemStats,
-            cItemStats,
-            kItemStats,
-            tItemStats
-    };
+    private static ItemStats[] itemStats;
 
     private static Main instance;
 
@@ -56,7 +51,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        System.out.println(ChatColor.RED + "Dieses Plugin wurde gestartet!");
+        System.out.println("§cDieses Plugin wurde gestartet!");
 
         scoreboardManager = Bukkit.getScoreboardManager();
         scoreboard = scoreboardManager.getNewScoreboard();
@@ -64,6 +59,18 @@ public final class Main extends JavaPlugin {
         timer = new Timer();
         jokerController = new JokerController();
         tablistManager = new TablistManager();
+
+        aItemStats = new ItemStats("SharpChart92853");
+        cItemStats = new ItemStats("Gamerspike11");
+        kItemStats = new ItemStats("TastyHalumi");
+        tItemStats = new ItemStats("TB_360");
+
+        itemStats = new ItemStats[]{
+                aItemStats,
+                cItemStats,
+                kItemStats,
+                tItemStats
+        };
 
         getServer().getPluginManager().registerEvents(new ConnectionListener(), this);
         getServer().getPluginManager().registerEvents(new ItemCollect(), this);
