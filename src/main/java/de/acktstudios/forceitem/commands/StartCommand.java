@@ -39,15 +39,19 @@ public class StartCommand implements CommandExecutor {
                 switch (online.getDisplayName()) {
                     case "SharpChart92853":
                         Main.aItemStats.addItem(firstItem, true);
+                        Main.aItemStats.setJokerAmount(Integer.parseInt(args[1]));
                         break;
                     case "Gamerspike11":
                         Main.cItemStats.addItem(firstItem, true);
+                        Main.cItemStats.setJokerAmount(Integer.parseInt(args[1]));
                         break;
                     case "TastyHalumi":
                         Main.kItemStats.addItem(firstItem, true);
+                        Main.kItemStats.setJokerAmount(Integer.parseInt(args[1]));
                         break;
                     case "TB_360":
                         Main.tItemStats.addItem(firstItem, true);
+                        Main.tItemStats.setJokerAmount(Integer.parseInt(args[1]));
                         break;
                     default:
                         System.out.println("The player is not registered!");
