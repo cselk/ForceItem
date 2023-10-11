@@ -19,14 +19,14 @@ public class ItemCollect implements Listener {
             switch (player.getDisplayName()) {
                 case "Gamerspike11":
 
-                    if (event.getItem().getItemStack().getType().equals(Main.cItemStats.currentItem.getType())) {
+                    if (event.getItem().getItemStack().getType().equals(Main.cItemStats.getCurrentItem().getType())) {
 
-                        player.sendMessage("§aDu hast gefunden: §6" + Main.cItemStats.currentItem.getItemMeta().getDisplayName());
+                        player.sendMessage("§aDu hast gefunden: §6" + Main.cItemStats.getCurrentItem().getItemMeta().getDisplayName());
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
 
                         ItemStack newItem = ForceItem.getRandomStack();
 
-                        if (Main.cItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                        if (Main.cItemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
                             newItem = ForceItem.getRandomStack();
                         }
 
@@ -38,14 +38,14 @@ public class ItemCollect implements Listener {
                     break;
                 case "SharpChart92853":
 
-                    if (event.getItem().getItemStack().getType().equals(Main.aItemStats.currentItem.getType())) {
+                    if (event.getItem().getItemStack().getType().equals(Main.aItemStats.getCurrentItem().getType())) {
 
-                        player.sendMessage("§aDu hast gefunden: §6" + Main.aItemStats.currentItem.getItemMeta().getDisplayName());
+                        player.sendMessage("§aDu hast gefunden: §6" + Main.aItemStats.getCurrentItem().getItemMeta().getDisplayName());
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
 
                         ItemStack newItem = ForceItem.getRandomStack();
 
-                        if (Main.aItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                        if (Main.aItemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
                             newItem = ForceItem.getRandomStack();
                         }
 
@@ -57,14 +57,14 @@ public class ItemCollect implements Listener {
                     break;
                     case "TB_360":
 
-                    if (event.getItem().getItemStack().getType().equals(Main.tItemStats.currentItem.getType())) {
+                    if (event.getItem().getItemStack().getType().equals(Main.tItemStats.getCurrentItem().getType())) {
 
-                        player.sendMessage("§aDu hast gefunden: §6" + Main.tItemStats.currentItem.getItemMeta().getDisplayName());
+                        player.sendMessage("§aDu hast gefunden: §6" + Main.tItemStats.getCurrentItem().getItemMeta().getDisplayName());
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
 
                         ItemStack newItem = ForceItem.getRandomStack();
 
-                        if (Main.tItemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+                        if (Main.tItemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
                             newItem = ForceItem.getRandomStack();
                         }
 

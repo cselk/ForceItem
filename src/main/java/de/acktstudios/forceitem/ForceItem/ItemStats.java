@@ -11,6 +11,7 @@ public class ItemStats implements ConfigurationSerializable {
 
     private String playerName;
     private ItemStack currentItem;
+    private List<ItemStack> items;
     private int amount = 0;
     private int jokerAmount = 0;
     private int jokersUsed = 0;
@@ -137,6 +138,14 @@ public class ItemStats implements ConfigurationSerializable {
 
     public void setJokersUsed(int jokersUsed) {
         this.jokersUsed = jokersUsed;
+    }
+
+    public List<ItemStack> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemStack> items) {
+        this.items = items;
     }
 
     // Serialization

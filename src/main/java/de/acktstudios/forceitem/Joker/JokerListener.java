@@ -101,9 +101,9 @@ private final Set<Player> jokerUsedPlayers = new HashSet<>();
 
         if (itemStats.useJoker()) {
 
-            player.getInventory().addItem(itemStats.currentItem);
+            player.getInventory().addItem(itemStats.getCurrentItem());
 
-            if (itemStats.items.contains(newItem.getItemMeta().getDisplayName())) {
+            if (itemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
                 newItem = ForceItem.getRandomStack();
             }
 

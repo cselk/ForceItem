@@ -76,7 +76,7 @@ public class Timer {
         String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                new TextComponent(ChatColor.GOLD.toString() + ChatColor.BOLD + timeString + " - " + stats.currentItem.getItemMeta().getDisplayName()));
+                new TextComponent(ChatColor.GOLD.toString() + ChatColor.BOLD + timeString + " - " + stats.getCurrentItem().getItemMeta().getDisplayName()));
     }
 
     private void run() {
