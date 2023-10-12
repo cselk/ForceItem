@@ -87,10 +87,6 @@ public final class Main extends JavaPlugin {
         // Plugin shutdown logic
         timer.save();
 
-        for (ItemStats stats : itemStats) {
-            stats.save();
-        }
-
         config.save();
     }
 
