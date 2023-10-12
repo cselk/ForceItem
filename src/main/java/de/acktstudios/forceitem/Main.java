@@ -10,6 +10,7 @@ import de.acktstudios.forceitem.Joker.JokerController;
 import de.acktstudios.forceitem.Timer.Timer;
 import de.acktstudios.forceitem.commands.TimerCommand;
 import de.acktstudios.forceitem.listeners.ConnectionListener;
+import de.acktstudios.forceitem.listeners.DeathListener;
 import de.acktstudios.forceitem.tablist.TablistManager;
 import de.acktstudios.forceitem.utils.Config;
 import de.acktstudios.forceitem.utils.Players;
@@ -75,6 +76,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ConnectionListener(), this);
         getServer().getPluginManager().registerEvents(new ItemCollect(), this);
         getServer().getPluginManager().registerEvents(new JokerListener(), this);
+        getServer().getPluginManager().registerEvents(new DeathListener(), this);
 
         getCommand("start").setExecutor(new StartCommand());
         getCommand("timer").setExecutor(new TimerCommand());

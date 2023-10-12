@@ -45,4 +45,10 @@ public class JokerController {
         }
     }
 
+    public void giveJokersToPlayer(int amount, Player player) {
+        for (int i = 0; i < amount; i++) {
+            player.getInventory().addItem(createJoker());
+        }
+    }
+
 }
