@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class ResultCommand implements CommandExecutor {
 
@@ -57,17 +58,22 @@ public class ResultCommand implements CommandExecutor {
 
         // Panes
         for (int i = 0; i < 9; i++) {
-            inventory.addItem(createItemStack(Material.WHITE_STAINED_GLASS_PANE, 1, ""));
+            inventory.addItem(createItemStack(Material.WHITE_STAINED_GLASS_PANE, 1, "Slot " + (i+1)));
         }
 
-        for (ItemStack item : itemStats.getItems()) {
+        List<ItemStack> items = itemStats.getItems();
+        int size = items.size();
+        // Add all items except the last
+        for (int i = 0; i < size - 1; i++) {
+            ItemStack item = items.get(i);
             inventory.addItem(createItemStack(item.getType(), 1, item.getItemMeta().getDisplayName()));
         }
 
         return inventory;
     }
 
-    public ItemStack createItemStack(Material material, int amount, String displayName){
+
+    public ItemStack createItemStack(Material material, int amount, String displayName) {
 
         ItemStack itemStack = new ItemStack(material, amount);
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -75,6 +81,6 @@ public class ResultCommand implements CommandExecutor {
         itemMeta.setDisplayName(displayName);
 
         itemStack.setItemMeta(itemMeta);
-        return  itemStack;
+        return itemStack;
     }
 }
