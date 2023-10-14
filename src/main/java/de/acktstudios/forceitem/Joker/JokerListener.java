@@ -60,7 +60,6 @@ public class JokerListener implements Listener {
             ItemMeta meta = itemInHand.getItemMeta();
             event.setCancelled(true);
 
-            // Überprüfe, ob der benutzerdefinierte Teil im PersistentDataContainer vorhanden ist
             if (meta != null) {
                 NamespacedKey key = new NamespacedKey("de_acktstudios_forceitem", "joker");
                 Byte jokerValue = meta.getPersistentDataContainer().get(key, PersistentDataType.BYTE);

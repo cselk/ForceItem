@@ -5,13 +5,19 @@ import de.acktstudios.forceitem.Main;
 import de.acktstudios.forceitem.ForceItem.ItemStats;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class ResultCommand implements CommandExecutor {
 
@@ -34,11 +40,47 @@ public class ResultCommand implements CommandExecutor {
             if (counter <= itemStatsArray.length) {
                 Bukkit.broadcastMessage(Main.getPrefix() + ChatColor.GREEN + itemStatsArray[counter].getPlayerName() + " collected: "
                         + ChatColor.GOLD + itemStatsArray[counter].getAmount());
+
+                for (Player online : Bukkit.getOnlinePlayers()) {
+                    online.openInventory(createInventory(itemStatsArray[counter]));
+                }
+
                 counter++;
             }
 
             return true;
         }
         return false;
+    }
+
+    public Inventory createInventory(ItemStats itemStats) {
+        Inventory inventory = Bukkit.createInventory(null, 54, "Gefundene Items");
+
+        // Panes
+        for (int i = 0; i < 9; i++) {
+            inventory.addItem(createItemStack(Material.WHITE_STAINED_GLASS_PANE, 1, "Slot " + (i+1)));
+        }
+
+        List<ItemStack> items = itemStats.getItems();
+        int size = items.size();
+        // Add all items except the last
+        for (int i = 0; i < size - 1; i++) {
+            ItemStack item = items.get(i);
+            inventory.addItem(createItemStack(item.getType(), 1, item.getItemMeta().getDisplayName()));
+        }
+
+        return inventory;
+    }
+
+
+    public ItemStack createItemStack(Material material, int amount, String displayName) {
+
+        ItemStack itemStack = new ItemStack(material, amount);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+
+        itemMeta.setDisplayName(displayName);
+
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
     }
 }

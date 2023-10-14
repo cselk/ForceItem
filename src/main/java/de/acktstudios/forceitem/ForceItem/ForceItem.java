@@ -1,10 +1,15 @@
 package de.acktstudios.forceitem.ForceItem;
 
+import de.acktstudios.forceitem.utils.Players;
 import de.acktstudios.forceitem.utils.StringConverter;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.awt.*;
 import java.util.Random;
 
 public class ForceItem {
@@ -34,6 +39,12 @@ public class ForceItem {
         itemStack.setItemMeta(itemMeta);
 
         return itemStack;
+    }
+
+    public static void showTimeUpText(Player player) {
+
+        player.sendTitle(ChatColor.GOLD + "Time is up!", "/result", 5, 45, 15);
+
     }
 
     private static boolean isSpawnEgg(Material material) {
