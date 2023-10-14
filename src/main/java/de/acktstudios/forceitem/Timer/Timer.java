@@ -90,6 +90,11 @@ public class Timer {
 
                     if (getTime() <= 0) {
                         stopTimer();
+
+                        for (Player online : Bukkit.getOnlinePlayers()) {
+                            ForceItem.showTimeUpText(online);
+                        }
+
                     }
                 }
             }
