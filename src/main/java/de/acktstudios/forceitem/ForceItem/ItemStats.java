@@ -8,7 +8,7 @@ import java.util.List;
 public class ItemStats {
 
     private String playerName;
-    public List<String> items = new ArrayList<>();
+    public List<ItemStack> items = new ArrayList<>();
     public ItemStack currentItem;
     private int amount = 0;
     private int jokerAmount = 0;
@@ -19,7 +19,7 @@ public class ItemStats {
     }
 
     public void addItem(ItemStack itemStack, boolean init) {
-        items.add(itemStack.getItemMeta().getDisplayName());
+        items.add(itemStack);
         currentItem = itemStack;
 
         if (!init) {
@@ -65,11 +65,11 @@ public class ItemStats {
         this.playerName = playerName;
     }
 
-    public List<String> getItems() {
+    public List<ItemStack> getItems() {
         return items;
     }
 
-    public void setItems(List<String> items) {
+    public void setItems(List<ItemStack> items) {
         this.items = items;
     }
 
