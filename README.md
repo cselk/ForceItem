@@ -15,4 +15,5 @@ Save your current position to return later or recall them:
 `/pos <name>`
 
 ### Experimental Features (v1.4-beta)
-The current pre-release version is very stable, but sometimes the joker use is a bit strange. It always works either looking in the air or looking on a block.
+**USE v1.5 INSTEAD**
+The current pre-release version is very stable, but sometimes the jokers don't work properly. It always works either looking in the air or looking on a block.
