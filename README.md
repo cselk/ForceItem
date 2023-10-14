@@ -1,19 +1,27 @@
-### How to play
-Try to find the requested items in a specific, unique order. 
-Make sure you have a **spigot server** with the minecraft version 1.20.1. Download the `.jar` file and drag it into the **plugins folder**.
-(Currently it is player name based and **NOT** dynamic)
+## Version 2.0 
+#### Inventory
+View the latest major update, version 2.0, introduces a new inventory view that displays
+all collected items after using the `/result` command.
 
-### Commands
-**Start** the game in the minecraft chat:
-`/start <time> <jokers>`
 
-Get the endgame **results**, ordered from least to most:
-`/result`
+Additionally, a new end-of-session animation has been added.
 
-### Additional Commands
+### How to Play
+You follow a **specific, unique** order when searching for the required items. 
+Ensure you have a Spigot Server with Minecraft version 1.20.1 and download the
+`.jar` file before dragging it into the **plugins folder**.
+(Please note that currently, it is based on the player's name and **not** dynamic.)
+
+### Commands to Start and Get Results
+
+To **start** the game, enter the command `/start <time> <jokers>` in the chat.
+
+To obtain the **results** of the game in ascending order, enter the command `/result`.
+
+Here are some additional commands you might find useful.
 Save your current position to return later or recall them:
 `/pos <name>`
 
-### Experimental Features (v1.4-beta)
-**USE v1.5 INSTEAD**
-The current pre-release version is very stable, but sometimes the jokers don't work properly. It always works either looking in the air or looking on a block.
+### Experimental Features
+(v1.4-beta) **USE v1.5
+INSTEAD** The pre-release version is very stable, but sometimes the jokers don't work properly. It always works whether looking skyward or gazing at a block.
