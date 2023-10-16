@@ -54,9 +54,10 @@ public class ResultCommand implements CommandExecutor {
     }
 
     public Inventory createInventory(ItemStats itemStats) {
-        int inventorySize = 63;
+        int inventorySize = 54;
         Inventory inventory = Bukkit.createInventory(null, inventorySize, "Gefundene Items");
         int slotCount = 0;
+        int itemCount = 0;
 
         /*// Panes
         for (int i = 0; i < 9; i++) {
@@ -82,12 +83,27 @@ public class ResultCommand implements CommandExecutor {
         for (int i = 0; i < inventorySize; i++) {
             if (i < 9) {
                 inventory.addItem(createItemStack(Material.WHITE_STAINED_GLASS_PANE, 1, "Slot " + slotCount));
+                slotCount++;
             }
 
             List<ItemStack> items = itemStats.getItems();
             int size = items.size();
-            if (i >= 9 && i < 53) {
+            if (i >= 9 && i < 44) {
+                if (i == 9 || i == 17 || i == 18 || i == 26 || i == 27 || i == 35 || i == 36) {
+                    inventory.addItem(createItemStack(Material.GRAY_STAINED_GLASS_PANE, 1, "Slot "+ slotCount));
+                    slotCount++;
+                } else if (itemCount <= size - 1) {
+                    inventory.addItem(createItemStack(items.get(itemCount).getType(), 1, items.get(itemCount).getItemMeta().getDisplayName()));
+                    itemCount++;
+                } else {
+                    inventory.addItem(createItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "Slot " + slotCount));
+                    slotCount++;
+                }
+            }
 
+            if (i >= 44) {
+                inventory.addItem(createItemStack(Material.GRAY_STAINED_GLASS_PANE, 1, "Slot" + slotCount));
+                slotCount++;
             }
         }
 
