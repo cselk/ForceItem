@@ -21,7 +21,7 @@ public class ForceItem {
 
         do {
             material = Material.values()[new Random().nextInt(Material.values().length)];
-        } while (isSpawnEgg(material) || !material.isItem() || isCommandBlock(material));
+        } while (isSpawnEgg(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material));
 
         ItemStack itemStack = new ItemStack(material);
 
@@ -47,13 +47,16 @@ public class ForceItem {
 
     }
 
+    // VALIDATION
     private static boolean isSpawnEgg(Material material) {
         // Überprüfen Sie hier, ob das Material ein Spawn-Egg ist
         return material.name().endsWith("_SPAWN_EGG");
     }
-
     private static boolean isCommandBlock(Material material) {
         return material.name().endsWith("_COMMAND_BLOCK");
+    }
+    private static boolean isSpawner(Material material) {
+        return material.name().endsWith("SPAWNER");
     }
 
     public static boolean isEnded() {
