@@ -42,7 +42,11 @@ public class ResultCommand implements CommandExecutor {
                         + ChatColor.GOLD + itemStatsArray[counter].getAmount());
 
                 for (Player online : Bukkit.getOnlinePlayers()) {
-                    online.openInventory(createInventory(itemStatsArray[counter]));
+                    int inventorySize = 54;
+                    Inventory inventoryRaw = Bukkit.createInventory(null, inventorySize, "Gefundene Items");
+                    Inventory inventory = createInventory(inventoryRaw, inventorySize);
+                    Inventory inventorySetted = setItems(inventorySize, itemStatsArray[counter], inventory);
+                    online.openInventory(inventorySetted);
                 }
 
                 counter++;
@@ -53,58 +57,36 @@ public class ResultCommand implements CommandExecutor {
         return false;
     }
 
-    public Inventory createInventory(ItemStats itemStats) {
-        int inventorySize = 54;
-        Inventory inventory = Bukkit.createInventory(null, inventorySize, "Gefundene Items");
-        int slotCount = 0;
-        int itemCount = 0;
-
-        /*// Panes
-        for (int i = 0; i < 9; i++) {
-            inventory.addItem(createItemStack(Material.WHITE_STAINED_GLASS_PANE, 1, "Slot " + slotCount));
-            slotCount++;
-        }
-
+    public Inventory setItems(int invSize, ItemStats itemStats, Inventory inv) {
         List<ItemStack> items = itemStats.getItems();
         int size = items.size();
+        int itemCount = 0;
 
-        // Add all items except the last
-        for (int i = 0; i < size - 1; i++) {
-
-            if (i == 0 || i == 8 || i == 9 || i == 17 || i == 18 || i == 26 || i == 27 || i == 35 || i == 36 || i == 44 || i == 45 || i == 53) {
-                inventory.addItem(createItemStack(Material.GRAY_STAINED_GLASS_PANE, 1, "Slot " + slotCount));
-                slotCount++;
+        for (int i = 0; i < invSize; i++) {
+            if (itemCount < size) {
+                if ((i >= 10 && i <= 16) || (i >= 19 && i <= 25) || (i >= 28 && i <= 34) || (i >= 37 && i <= 43) || (i >= 46 && i <= 52)) {
+                    ItemStack stack = inv.getItem(i);
+                    stack.setType(itemStats.getItems().get(itemCount).getType());
+                    stack.getItemMeta().setDisplayName(itemStats.getItems().get(itemCount).getItemMeta().getDisplayName());
+                    itemCount++;
+                }
             }
+        }
 
-            ItemStack item = items.get(i);
-            inventory.addItem(createItemStack(item.getType(), 1, item.getItemMeta().getDisplayName()));
-        }*/
+        return inv;
+    }
+
+    public Inventory createInventory(Inventory inventory, int inventorySize) {
+        int slotCount = 0;
+
 
         for (int i = 0; i < inventorySize; i++) {
             if (i < 9) {
                 inventory.addItem(createItemStack(Material.WHITE_STAINED_GLASS_PANE, 1, "Slot " + slotCount));
-                slotCount++;
+            } else {
+                inventory.addItem(createItemStack(Material.GRAY_STAINED_GLASS_PANE, 1, "Slot " + slotCount));
             }
-
-            List<ItemStack> items = itemStats.getItems();
-            int size = items.size();
-            if (i >= 9 && i < 44) {
-                if (i == 9 || i == 17 || i == 18 || i == 26 || i == 27 || i == 35 || i == 36) {
-                    inventory.addItem(createItemStack(Material.GRAY_STAINED_GLASS_PANE, 1, "Slot "+ slotCount));
-                    slotCount++;
-                } else if (itemCount <= size - 1) {
-                    inventory.addItem(createItemStack(items.get(itemCount).getType(), 1, items.get(itemCount).getItemMeta().getDisplayName()));
-                    itemCount++;
-                } else {
-                    inventory.addItem(createItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1, "Slot " + slotCount));
-                    slotCount++;
-                }
-            }
-
-            if (i >= 44) {
-                inventory.addItem(createItemStack(Material.GRAY_STAINED_GLASS_PANE, 1, "Slot" + slotCount));
-                slotCount++;
-            }
+            slotCount++;
         }
 
         return inventory;
