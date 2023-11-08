@@ -21,7 +21,7 @@ public class ForceItem {
 
         do {
             material = Material.values()[new Random().nextInt(Material.values().length)];
-        } while (isSpawnEgg(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material));
+        } while (isSpawnEgg(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material) || isLight(material) || isStructureBlock(material) || isPlayerHead(material) || isInfestedStone(material));
 
         ItemStack itemStack = new ItemStack(material);
 
@@ -57,6 +57,18 @@ public class ForceItem {
     }
     private static boolean isSpawner(Material material) {
         return material.name().endsWith("SPAWNER");
+    }
+    private static boolean isLight(Material material) {
+        return material.name().contains("LIGHT");
+    }
+    private static boolean isStructureBlock(Material material) {
+        return material.name().endsWith("STRUCTURE_BLOCK");
+    }
+    private static boolean isPlayerHead(Material material) {
+        return material.name().endsWith("PLAYER_HEAD");
+    }
+    private static boolean isInfestedStone(Material material) {
+        return material.name().endsWith("INFESTED_STONE");
     }
 
     public static boolean isEnded() {
