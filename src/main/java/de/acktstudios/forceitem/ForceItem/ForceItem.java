@@ -21,15 +21,9 @@ public class ForceItem {
 
         do {
             material = Material.values()[new Random().nextInt(Material.values().length)];
-        } while (isSpawnEgg(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material) || isLight(material) || isStructureBlock(material) || isPlayerHead(material) || isInfestedStone(material));
+        } while (isSpawnEgg(material) || isDebugStick(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material) || isLight(material) || isStructureBlock(material) || isPlayerHead(material) || isInfested(material) || isKnowBook(material) || isReinforced(material) || isPetrifiedOak(material) || isJigsaw(material) || isBedrock(material) || isBarrier(material));
 
         ItemStack itemStack = new ItemStack(material);
-
-        while (itemStack.getType().equals("REINFORCED_DEEPSLATE") || itemStack.getType().equals("JIGSAW") || itemStack.getType().equals("BEDROCK") || itemStack.getType().equals("BARRIER")) {
-            material = Material.values()[new Random().nextInt(Material.values().length)];
-        }
-
-        itemStack = new ItemStack(material);
 
         // Holen Sie sich die ItemMeta und setzen Sie den DisplayName auf den Namen des Materials
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -53,7 +47,7 @@ public class ForceItem {
         return material.name().endsWith("_SPAWN_EGG");
     }
     private static boolean isCommandBlock(Material material) {
-        return material.name().endsWith("_COMMAND_BLOCK");
+        return material.name().contains("COMMAND_BLOCK");
     }
     private static boolean isSpawner(Material material) {
         return material.name().endsWith("SPAWNER");
@@ -67,8 +61,29 @@ public class ForceItem {
     private static boolean isPlayerHead(Material material) {
         return material.name().endsWith("PLAYER_HEAD");
     }
-    private static boolean isInfestedStone(Material material) {
-        return material.name().endsWith("INFESTED_STONE");
+    private static boolean isInfested(Material material) {
+        return material.name().contains("INFESTED");
+    }
+    private static boolean isKnowBook(Material material) {
+        return material.name().contains("KNOWLEDGE_BOOK");
+    }
+    private static boolean isReinforced(Material material) {
+        return material.name().contains("REINFORCED_DEEPSLATE");
+    }
+    private static boolean isPetrifiedOak(Material material) {
+        return material.name().contains("PETRIFIED_OAK");
+    }
+    private static boolean isJigsaw(Material material) {
+        return material.name().contains("JIGSAW");
+    }
+    private static boolean isBedrock(Material material) {
+        return material.name().contains("BEDROCK");
+    }
+    private static boolean isBarrier(Material material) {
+        return material.name().contains("BARRIER");
+    }
+    private static boolean isDebugStick(Material material) {
+        return material.name().contains("DEBUG_STICK");
     }
 
     public static boolean isEnded() {
