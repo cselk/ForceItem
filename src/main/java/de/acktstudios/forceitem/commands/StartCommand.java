@@ -21,11 +21,19 @@ public class StartCommand implements CommandExecutor {
 
             // Loop for all online players
             for (Player online : Bukkit.getOnlinePlayers()) {
+                // Prepare players
                 online.getInventory().clear();
                 online.setGameMode(GameMode.SURVIVAL);
+                online.setHealth(20);
+                online.setFoodLevel(20);
+                online.teleport(online.getWorld().getSpawnLocation());
+                online.getWorld().setTime(1000);
+
+                // Set up ForceItem
 
                 ItemStack firstItem = ForceItem.getRandomStack();
 
+                online.sendMessage("§aEs wird mit §6" + args[1] + " §aJokern gespielt!");
                 online.sendMessage("§aDein erstes Item: §6" + firstItem.getItemMeta().getDisplayName());
 
                 online.setPlayerListName(online.getDisplayName() + " [§6" + firstItem.getItemMeta().getDisplayName() + "§f]");
