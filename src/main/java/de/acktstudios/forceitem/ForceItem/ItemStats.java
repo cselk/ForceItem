@@ -1,5 +1,6 @@
 package de.acktstudios.forceitem.ForceItem;
 
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -11,8 +12,15 @@ public class ItemStats {
     public List<ItemStack> items = new ArrayList<>();
     public ItemStack currentItem;
     private int amount = 0;
+
+    // Joker Handling
     private int jokerAmount = 0;
     private int jokersUsed = 0;
+
+    // Result-Inventory Handling
+    public int currentInvIndex = 0;
+    public ArrayList<Inventory> resultInvs = new ArrayList<>();
+    public Inventory currentInv;
 
     public ItemStats(String playerName) {
         this.playerName = playerName;

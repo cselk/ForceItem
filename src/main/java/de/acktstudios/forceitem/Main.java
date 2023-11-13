@@ -2,6 +2,7 @@ package de.acktstudios.forceitem;
 
 import de.acktstudios.forceitem.ForceItem.ItemCollect;
 import de.acktstudios.forceitem.ForceItem.ItemStats;
+import de.acktstudios.forceitem.ForceItem.NavigationListener;
 import de.acktstudios.forceitem.Joker.JokerListener;
 import de.acktstudios.forceitem.commands.PosSaveCommand;
 import de.acktstudios.forceitem.commands.ResultCommand;
@@ -15,7 +16,6 @@ import de.acktstudios.forceitem.tablist.TablistManager;
 import de.acktstudios.forceitem.utils.Config;
 import de.acktstudios.forceitem.utils.Players;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
@@ -77,6 +77,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ItemCollect(), this);
         getServer().getPluginManager().registerEvents(new JokerListener(), this);
         getServer().getPluginManager().registerEvents(new DeathListener(), this);
+        getServer().getPluginManager().registerEvents(new NavigationListener(), this);
 
         getCommand("start").setExecutor(new StartCommand());
         getCommand("timer").setExecutor(new TimerCommand());
