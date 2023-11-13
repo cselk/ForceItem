@@ -59,6 +59,9 @@ public class Timer {
                     case "TB_360":
                         showText(player, Main.tItemStats);
                         break;
+                    case "TastyHalumi":
+                        showText(player, Main.kItemStats);
+                        break;
                     default:
                         player.sendMessage("§cYou are not registered!");
                         break;
@@ -112,7 +115,7 @@ public class Timer {
 
         ForceItem.setEnded(true);
 
-        for (Player player: Bukkit.getOnlinePlayers()) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
             player.teleport(player.getWorld().getSpawnLocation());
         }
     }
