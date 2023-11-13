@@ -55,7 +55,7 @@ public class ItemCollect implements Listener {
                         player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
                     }
                     break;
-                    case "TB_360":
+                case "TB_360":
 
                     if (event.getItem().getItemStack().getType().equals(Main.tItemStats.getCurrentItem().getType())) {
 
@@ -69,6 +69,25 @@ public class ItemCollect implements Listener {
                         }
 
                         Main.tItemStats.addItem(newItem, false);
+
+                        player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                        player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                    }
+                    break;
+                case "TastyHalumi":
+
+                    if (event.getItem().getItemStack().getType().equals(Main.kItemStats.getCurrentItem().getType())) {
+
+                        player.sendMessage("§aDu hast gefunden: §6" + Main.kItemStats.getCurrentItem().getItemMeta().getDisplayName());
+                        player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
+
+                        ItemStack newItem = ForceItem.getRandomStack();
+
+                        if (Main.kItemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
+                            newItem = ForceItem.getRandomStack();
+                        }
+
+                        Main.kItemStats.addItem(newItem, false);
 
                         player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
                         player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
