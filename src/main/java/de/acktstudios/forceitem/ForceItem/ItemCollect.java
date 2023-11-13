@@ -24,11 +24,7 @@ public class ItemCollect implements Listener {
                         player.sendMessage("§aDu hast gefunden: §6" + Main.cItemStats.getCurrentItem().getItemMeta().getDisplayName());
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
 
-                        ItemStack newItem = ForceItem.getRandomStack();
-
-                        if (Main.cItemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
-                            newItem = ForceItem.getRandomStack();
-                        }
+                        ItemStack newItem = ForceItem.getRandomStack(Main.cItemStats);
 
                         Main.cItemStats.addItem(newItem, false);
 
@@ -43,11 +39,7 @@ public class ItemCollect implements Listener {
                         player.sendMessage("§aDu hast gefunden: §6" + Main.aItemStats.getCurrentItem().getItemMeta().getDisplayName());
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
 
-                        ItemStack newItem = ForceItem.getRandomStack();
-
-                        if (Main.aItemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
-                            newItem = ForceItem.getRandomStack();
-                        }
+                        ItemStack newItem = ForceItem.getRandomStack(Main.aItemStats);
 
                         Main.aItemStats.addItem(newItem, false);
 
@@ -62,11 +54,7 @@ public class ItemCollect implements Listener {
                         player.sendMessage("§aDu hast gefunden: §6" + Main.tItemStats.getCurrentItem().getItemMeta().getDisplayName());
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
 
-                        ItemStack newItem = ForceItem.getRandomStack();
-
-                        if (Main.tItemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
-                            newItem = ForceItem.getRandomStack();
-                        }
+                        ItemStack newItem = ForceItem.getRandomStack(Main.tItemStats);
 
                         Main.tItemStats.addItem(newItem, false);
 
@@ -81,11 +69,7 @@ public class ItemCollect implements Listener {
                         player.sendMessage("§aDu hast gefunden: §6" + Main.kItemStats.getCurrentItem().getItemMeta().getDisplayName());
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
 
-                        ItemStack newItem = ForceItem.getRandomStack();
-
-                        if (Main.kItemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
-                            newItem = ForceItem.getRandomStack();
-                        }
+                        ItemStack newItem = ForceItem.getRandomStack(Main.kItemStats);
 
                         Main.kItemStats.addItem(newItem, false);
 

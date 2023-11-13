@@ -78,21 +78,20 @@ public class JokerListener implements Listener {
 
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 1.0f);
 
-        ItemStack newItem = ForceItem.getRandomStack();
         String displayName = player.getDisplayName();
 
         switch (displayName) {
             case "SharpChart92853":
-                handlePlayerCase(player, Main.aItemStats, newItem);
+                handlePlayerCase(player, Main.aItemStats);
                 break;
             case "Gamerspike11":
-                handlePlayerCase(player, Main.cItemStats, newItem);
+                handlePlayerCase(player, Main.cItemStats);
                 break;
             case "TB_360":
-                handlePlayerCase(player, Main.tItemStats, newItem);
+                handlePlayerCase(player, Main.tItemStats);
                 break;
             case "TastyHalumi":
-                handlePlayerCase(player, Main.kItemStats, newItem);
+                handlePlayerCase(player, Main.kItemStats);
                 break;
             default:
                 player.sendMessage("§cYou are not registered!");
@@ -100,15 +99,14 @@ public class JokerListener implements Listener {
         }
     }
 
-    private void handlePlayerCase(Player player, ItemStats itemStats, ItemStack newItem) {
+    private void handlePlayerCase(Player player, ItemStats itemStats) {
+        ItemStack newItem;
 
         if (itemStats.useJoker()) {
 
             player.getInventory().addItem(itemStats.getCurrentItem());
 
-            if (itemStats.getItems().contains(newItem.getItemMeta().getDisplayName())) {
-                newItem = ForceItem.getRandomStack();
-            }
+            newItem = ForceItem.getRandomStack(itemStats);
 
             itemStats.addItem(newItem, false);
 

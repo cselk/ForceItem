@@ -69,7 +69,6 @@ public class ResultCommand implements CommandExecutor {
 
                             Inventory inventorySetted = setItemsSplitted(inventorySize, itemStatsArray[counter], inventory, i);
                             itemStatsArray[counter].resultInvs.add(inventorySetted);
-                            System.out.println(Arrays.toString(inventorySetted.getContents()));
                         }
                         // Set first inventory as current
                         itemStatsArray[counter].currentInv = itemStatsArray[counter].resultInvs.get(0);
@@ -117,7 +116,6 @@ public class ResultCommand implements CommandExecutor {
                     if (itemCount < items.size()-1) {
                         ItemStack stack = inv.getItem(i);
                         stack.setType(itemStats.getItems().get(itemCount).getType());
-                        System.out.println(itemStats.getItems().get(itemCount).getType());
                         stack.getItemMeta().setDisplayName(itemStats.getItems().get(itemCount).getItemMeta().getDisplayName());
                         itemCount++;
                     }

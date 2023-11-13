@@ -16,14 +16,33 @@ public class ForceItem {
 
     private static boolean ended = false;
 
-    public static ItemStack getRandomStack() {
+    public static ItemStack getRandomStack(ItemStats itemStats) {
         Material material;
+        ItemStack itemStack;
 
         do {
             material = Material.values()[new Random().nextInt(Material.values().length)];
-        } while (isSpawnEgg(material) || isDebugStick(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material) || isLight(material) || isStructureBlock(material) || isPlayerHead(material) || isInfested(material) || isKnowBook(material) || isReinforced(material) || isPetrifiedOak(material) || isJigsaw(material) || isBedrock(material) || isBarrier(material));
+            itemStack = new ItemStack(material);
+        } while (itemStats.items.contains(itemStack) || isSpawnEgg(material) || isDebugStick(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material) || isLight(material) || isStructureBlock(material) || isPlayerHead(material) || isInfested(material) || isKnowBook(material) || isReinforced(material) || isPetrifiedOak(material) || isJigsaw(material) || isBedrock(material) || isBarrier(material));
 
-        ItemStack itemStack = new ItemStack(material);
+        // Holen Sie sich die ItemMeta und setzen Sie den DisplayName auf den Namen des Materials
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(StringConverter.convert(material.toString())); // Setzen Sie den DisplayName auf den Namen des Materials
+
+        // Setzen Sie die aktualisierte ItemMeta zurück zum ItemStack
+        itemStack.setItemMeta(itemMeta);
+
+        return itemStack;
+    }
+
+    public static ItemStack getRandomStack() {
+        Material material;
+        ItemStack itemStack;
+
+        do {
+            material = Material.values()[new Random().nextInt(Material.values().length)];
+            itemStack = new ItemStack(material);
+        } while (isSpawnEgg(material) || isDebugStick(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material) || isLight(material) || isStructureBlock(material) || isPlayerHead(material) || isInfested(material) || isKnowBook(material) || isReinforced(material) || isPetrifiedOak(material) || isJigsaw(material) || isBedrock(material) || isBarrier(material));
 
         // Holen Sie sich die ItemMeta und setzen Sie den DisplayName auf den Namen des Materials
         ItemMeta itemMeta = itemStack.getItemMeta();
