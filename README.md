@@ -1,10 +1,9 @@
-## Version 2.0 
+## Version 2.3.1
 #### Inventory
 View the latest major update, version 2.0, introduces a new inventory view that displays
 all collected items after using the `/result` command.
+Now in version 2.3 the view is also updated to a multi-page view, allowing for more items to be displayed.
 
-
-Additionally, a new end-of-session animation has been added.
 
 ### How to Play
 You follow a **specific, unique** order when searching for the required items. 
@@ -23,5 +22,5 @@ Save your current position to return later or recall them:
 `/pos <name>`
 
 ### Experimental Features
-(v1.4-beta) **USE v1.5
-INSTEAD** The pre-release version is very stable, but sometimes the jokers don't work properly. It always works whether looking skyward or gazing at a block.
+(v2.2-beta) **USE NEWEST 2.3.1
+INSTEAD**
