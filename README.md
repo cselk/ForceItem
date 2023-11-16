@@ -1,8 +1,7 @@
-## Version 2.3.1
+## Version 3.0.1
 #### Inventory
-View the latest major update, version 2.0, introduces a new inventory view that displays
-all collected items after using the `/result` command.
-Now in version 2.3 the view is also updated to a multi-page view, allowing for more items to be displayed.
+View the latest **major update**, version 3.0, now saves the **current game state** (to a file), allowing for the game to be resumed at a later time.
+The game state is saved when the server is stopped or is getting reloaded.
 
 
 ### How to Play
@@ -21,6 +20,6 @@ Here are some additional commands you might find useful.
 Save your current position to return later or recall them:
 `/pos <name>`
 
-### Experimental Features
-(v2.2-beta) **USE NEWEST 2.3.1
-INSTEAD**
+### Errors
+If you have trouble with starting the game again, ensure you delete the current game state file (plugins/ForceItem/config.yml).
+(Fix in next version)
