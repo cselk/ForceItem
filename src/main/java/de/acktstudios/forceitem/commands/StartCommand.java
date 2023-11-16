@@ -38,28 +38,26 @@ public class StartCommand implements CommandExecutor {
 
                 online.setPlayerListName(online.getDisplayName() + " [§6" + firstItem.getItemMeta().getDisplayName() + "§f]");
 
-                try {
-                    Main.getInstance().getJokerController().giveJokers(Integer.parseInt(args[1]));
-                } catch (NumberFormatException e) {
-                    sender.sendMessage("§c Parameter 2 must be a number!");
-                }
-
                 switch (online.getDisplayName()) {
                     case "SharpChart92853":
                         Main.aItemStats.addItem(firstItem, true);
                         Main.aItemStats.setJokerAmount(Integer.parseInt(args[1]));
+                        Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
                         break;
                     case "Gamerspike11":
                         Main.cItemStats.addItem(firstItem, true);
                         Main.cItemStats.setJokerAmount(Integer.parseInt(args[1]));
+                        Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
                         break;
                     case "TastyHalumi":
                         Main.kItemStats.addItem(firstItem, true);
                         Main.kItemStats.setJokerAmount(Integer.parseInt(args[1]));
+                        Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
                         break;
                     case "TB_360":
                         Main.tItemStats.addItem(firstItem, true);
                         Main.tItemStats.setJokerAmount(Integer.parseInt(args[1]));
+                        Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
                         break;
                     default:
                         System.out.println("The player is not registered!");

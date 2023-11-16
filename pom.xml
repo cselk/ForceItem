@@ -6,7 +6,7 @@
 
     <groupId>de.acktstudios</groupId>
     <artifactId>forceitem</artifactId>
-    <version>3.0</version>
+    <version>3.0.1</version>
     <packaging>jar</packaging>
 
     <name>Force Item</name>

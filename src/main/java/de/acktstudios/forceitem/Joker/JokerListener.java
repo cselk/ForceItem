@@ -25,24 +25,26 @@ public class JokerListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction().toString().contains("RIGHT")) {
-            Player player = event.getPlayer();
+        if (Main.getInstance().getTimer().isRunning()) {
+            if (event.getAction().toString().contains("RIGHT")) {
+                Player player = event.getPlayer();
 
-            // Überprüfen, ob der Spieler keinen Block ansieht (in der Luft klickt)
-            if (player.getTargetBlockExact(5) == null) {
-                if (!ForceItem.isEnded()) {
-                    ItemStack clickedItem = event.getItem();
+                // Überprüfen, ob der Spieler keinen Block ansieht (in der Luft klickt)
+                if (player.getTargetBlockExact(5) == null) {
+                    if (!ForceItem.isEnded()) {
+                        ItemStack clickedItem = event.getItem();
 
-                    if (clickedItem != null && clickedItem.getType() == Material.BARRIER) {
-                        ItemMeta meta = clickedItem.getItemMeta();
+                        if (clickedItem != null && clickedItem.getType() == Material.BARRIER) {
+                            ItemMeta meta = clickedItem.getItemMeta();
 
-                        // Überprüfe, ob der benutzerdefinierte Teil im PersistentDataContainer vorhanden ist
-                        if (meta != null) {
-                            NamespacedKey key = new NamespacedKey("de_acktstudios_forceitem", "joker");
-                            Byte jokerValue = meta.getPersistentDataContainer().get(key, PersistentDataType.BYTE);
+                            // Überprüfe, ob der benutzerdefinierte Teil im PersistentDataContainer vorhanden ist
+                            if (meta != null) {
+                                NamespacedKey key = new NamespacedKey("de_acktstudios_forceitem", "joker");
+                                Byte jokerValue = meta.getPersistentDataContainer().get(key, PersistentDataType.BYTE);
 
-                            if (jokerValue != null && jokerValue == (byte) 1) {
-                                handleJokerInteraction(player);
+                                if (jokerValue != null && jokerValue == (byte) 1) {
+                                    handleJokerInteraction(player);
+                                }
                             }
                         }
                     }
@@ -56,16 +58,18 @@ public class JokerListener implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
         ItemStack itemInHand = event.getItemInHand();
 
-        if (itemInHand != null && itemInHand.getType() == Material.BARRIER) {
-            ItemMeta meta = itemInHand.getItemMeta();
-            event.setCancelled(true);
+        if (Main.getInstance().getTimer().isRunning()) {
+            if (itemInHand != null && itemInHand.getType() == Material.BARRIER) {
+                ItemMeta meta = itemInHand.getItemMeta();
+                event.setCancelled(true);
 
-            if (meta != null) {
-                NamespacedKey key = new NamespacedKey("de_acktstudios_forceitem", "joker");
-                Byte jokerValue = meta.getPersistentDataContainer().get(key, PersistentDataType.BYTE);
+                if (meta != null) {
+                    NamespacedKey key = new NamespacedKey("de_acktstudios_forceitem", "joker");
+                    Byte jokerValue = meta.getPersistentDataContainer().get(key, PersistentDataType.BYTE);
 
-                if (jokerValue != null && jokerValue == (byte) 1) {
-                    handleJokerInteraction(event.getPlayer());
+                    if (jokerValue != null && jokerValue == (byte) 1) {
+                        handleJokerInteraction(event.getPlayer());
+                    }
                 }
             }
         }

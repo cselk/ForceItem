@@ -12,7 +12,7 @@ public class ItemCollect implements Listener {
     @EventHandler
     public void onPickup(PlayerPickupItemEvent event) {
 
-        if (!ForceItem.isEnded()) {
+        if (!ForceItem.isEnded() && Main.getInstance().getTimer().isRunning()) {
 
             Player player = event.getPlayer();
 
