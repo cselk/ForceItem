@@ -20,6 +20,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
+import java.io.IOException;
+
 public final class Main extends JavaPlugin {
 
     private static Players players;
@@ -61,17 +63,20 @@ public final class Main extends JavaPlugin {
         jokerController = new JokerController();
         tablistManager = new TablistManager();
 
-        aItemStats = new ItemStats("SharpChart92853");
-        cItemStats = new ItemStats("Gamerspike11");
-        kItemStats = new ItemStats("TastyHalumi");
-        tItemStats = new ItemStats("TB_360");
+        String[] names = {"SharpChart92853", "Gamerspike11", "TastyHalumi", "TB_360"};
+        ItemStats[] itemStats = new ItemStats[names.length];
 
-        itemStats = new ItemStats[]{
-                aItemStats,
-                cItemStats,
-                kItemStats,
-                tItemStats
-        };
+        for (int i = 0; i < names.length; i++) {
+            try {
+                itemStats[i] = new ItemStats(names[i]);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        aItemStats = itemStats[0];
+        cItemStats = itemStats[1];
+        kItemStats = itemStats[2];
+        tItemStats = itemStats[3];
 
         getServer().getPluginManager().registerEvents(new ConnectionListener(), this);
         getServer().getPluginManager().registerEvents(new ItemCollect(), this);
@@ -87,9 +92,16 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // Timer save
         timer.save();
 
+        // ItemStats save
+        aItemStats.save();
+        cItemStats.save();
+        kItemStats.save();
+        tItemStats.save();
+
+        // ALL OVER CONFIG SAVE
         config.save();
     }
 
