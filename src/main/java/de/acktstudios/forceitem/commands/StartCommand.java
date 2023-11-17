@@ -42,43 +42,47 @@ public class StartCommand implements CommandExecutor {
 
                 switch (online.getDisplayName()) {
                     case "SharpChart92853":
-                        Main.aItemStats.addItem(firstItem, true);
                         try {
                             Main.aItemStats.reset();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                        Main.aItemStats.addItem(firstItem, true);
+
                         Main.aItemStats.setJokerAmount(Integer.parseInt(args[1]));
                         Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
                         break;
                     case "Gamerspike11":
-                        Main.cItemStats.addItem(firstItem, true);
-                        Main.cItemStats.setJokerAmount(Integer.parseInt(args[1]));
                         try {
                             Main.cItemStats.reset();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                        Main.cItemStats.addItem(firstItem, true);
+                        Main.cItemStats.setJokerAmount(Integer.parseInt(args[1]));
+
                         Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
                         break;
                     case "TastyHalumi":
-                        Main.kItemStats.addItem(firstItem, true);
-                        Main.kItemStats.setJokerAmount(Integer.parseInt(args[1]));
-                        Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
                         try {
                             Main.kItemStats.reset();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                        Main.kItemStats.addItem(firstItem, true);
+                        Main.kItemStats.setJokerAmount(Integer.parseInt(args[1]));
+                        Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
+
                         break;
                     case "TB_360":
-                        Main.tItemStats.addItem(firstItem, true);
-                        Main.tItemStats.setJokerAmount(Integer.parseInt(args[1]));
                         try {
                             Main.tItemStats.reset();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                        Main.tItemStats.addItem(firstItem, true);
+                        Main.tItemStats.setJokerAmount(Integer.parseInt(args[1]));
+
                         Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
                         break;
                     default:
