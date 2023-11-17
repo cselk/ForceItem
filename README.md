@@ -1,4 +1,4 @@
-## Version 3.0.1
+## Version 3.1.1
 #### Inventory
 View the latest **major update**, version 3.0, now saves the **current game state** (to a file), allowing for the game to be resumed at a later time.
 The game state is saved when the server is stopped or is getting reloaded.

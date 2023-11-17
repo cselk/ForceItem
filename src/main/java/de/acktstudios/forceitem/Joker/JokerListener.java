@@ -107,8 +107,11 @@ public class JokerListener implements Listener {
         ItemStack newItem;
 
         if (itemStats.useJoker()) {
-
-            player.getInventory().addItem(itemStats.getCurrentItem());
+            if (player.getInventory().firstEmpty() != -1) {
+                player.getInventory().addItem(itemStats.getCurrentItem());
+            } else {
+                player.getWorld().dropItemNaturally(player.getLocation(), itemStats.getCurrentItem());
+            }
 
             newItem = ForceItem.getRandomStack(itemStats);
 
@@ -116,7 +119,6 @@ public class JokerListener implements Listener {
 
             player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
             player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
-
         }
     }
 }
