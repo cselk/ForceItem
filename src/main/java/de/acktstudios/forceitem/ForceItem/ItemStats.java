@@ -83,7 +83,15 @@ public class ItemStats {
         config.getConfig().set("forceitem." + playerName + ".jokersUsed", jokersUsed);
     }
 
-
+    public void reset() throws IOException {
+        items.clear();
+        currentItem = null;
+        amount = 0;
+        jokerAmount = 0;
+        jokersUsed = 0;
+        save();
+        load();
+    }
 
 
 
