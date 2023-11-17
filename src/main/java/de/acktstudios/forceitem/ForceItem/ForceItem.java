@@ -23,7 +23,7 @@ public class ForceItem {
         do {
             material = Material.values()[new Random().nextInt(Material.values().length)];
             itemStack = new ItemStack(material);
-        } while (itemStats.items.contains(itemStack) || isSpawnEgg(material) || isDebugStick(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material) || isLight(material) || isStructureBlock(material) || isPlayerHead(material) || isInfested(material) || isKnowBook(material) || isReinforced(material) || isPetrifiedOak(material) || isJigsaw(material) || isBedrock(material) || isBarrier(material));
+        } while (itemStats.items.contains(itemStack) || isEndPortalFrame(material) || isSpawnEgg(material) || isDebugStick(material) || !material.isItem() || isCommandBlock(material) || isSpawner(material) || isLight(material) || isStructureBlock(material) || isPlayerHead(material) || isInfested(material) || isKnowBook(material) || isReinforced(material) || isPetrifiedOak(material) || isJigsaw(material) || isBedrock(material) || isBarrier(material));
 
         // Holen Sie sich die ItemMeta und setzen Sie den DisplayName auf den Namen des Materials
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -103,6 +103,9 @@ public class ForceItem {
     }
     private static boolean isDebugStick(Material material) {
         return material.name().contains("DEBUG_STICK");
+    }
+    private static boolean isEndPortalFrame(Material material) {
+        return material.name().contains("END_PORTAL_FRAME");
     }
 
     public static boolean isEnded() {
