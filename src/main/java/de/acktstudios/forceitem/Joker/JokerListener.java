@@ -97,6 +97,12 @@ public class JokerListener implements Listener {
             case "TastyHalumi":
                 handlePlayerCase(player, Main.kItemStats);
                 break;
+            case "TJoseph1014":
+                handlePlayerCase(player, Main.rItemStats);
+                break;
+            case "GoldApfel2975":
+                handlePlayerCase(player, Main.jItemStats);
+                break;
             default:
                 player.sendMessage("§cYou are not registered!");
                 break;

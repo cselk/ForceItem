@@ -85,6 +85,28 @@ public class StartCommand implements CommandExecutor {
 
                         Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
                         break;
+                    case "TJoseph1014":
+                        try {
+                            Main.rItemStats.reset();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Main.rItemStats.addItem(firstItem, true);
+                        Main.rItemStats.setJokerAmount(Integer.parseInt(args[1]));
+
+                        Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
+                        break;
+                    case "GoldApfel2975":
+                        try {
+                            Main.jItemStats.reset();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Main.jItemStats.addItem(firstItem, true);
+                        Main.jItemStats.setJokerAmount(Integer.parseInt(args[1]));
+
+                        Main.getInstance().getJokerController().giveJokersToPlayer(Integer.parseInt(args[1]), online);
+                        break;
                     default:
                         System.out.println("The player is not registered!");
                         break;

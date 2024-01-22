@@ -38,6 +38,12 @@ public class NavigationListener implements Listener {
             case "TB_360":
                 handleNavigation(Main.tItemStats, player, item);
                 break;
+            case "TJoseph1014":
+                handleNavigation(Main.rItemStats, player, item);
+                break;
+            case "GoldApfel2975":
+                handleNavigation(Main.jItemStats, player, item);
+                break;
         }
     }
 

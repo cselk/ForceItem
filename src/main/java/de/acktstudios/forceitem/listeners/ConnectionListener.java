@@ -50,6 +50,12 @@ public class ConnectionListener implements Listener {
             case "TastyHalumi":
                 player.setPlayerListName(player.getDisplayName() + " [§6" + Main.kItemStats.getCurrentItem().getItemMeta().getDisplayName() + "§f]");
                 break;
+            case "TJoseph1014":
+                player.setPlayerListName(player.getDisplayName() + " [§6" + Main.rItemStats.getCurrentItem().getItemMeta().getDisplayName() + "§f]");
+                break;
+            case "GoldApfel2975":
+                player.setPlayerListName(player.getDisplayName() + " [§6" + Main.jItemStats.getCurrentItem().getItemMeta().getDisplayName() + "§f]");
+                break;
         }
 
         Main.getInstance().getTablistManager().setPlayerList(player);

@@ -62,6 +62,12 @@ public class Timer {
                     case "TastyHalumi":
                         showText(player, Main.kItemStats);
                         break;
+                    case "TJoseph1014":
+                        showText(player, Main.rItemStats);
+                        break;
+                    case "GoldApfel2975":
+                        showText(player, Main.jItemStats);
+                        break;
                     default:
                         player.sendMessage("§cYou are not registered!");
                         break;

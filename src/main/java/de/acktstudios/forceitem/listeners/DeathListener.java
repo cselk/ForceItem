@@ -37,6 +37,14 @@ public class DeathListener implements Listener {
                 jokersLeft = Main.kItemStats.getJokerAmount() - Main.kItemStats.getJokersUsed();
                 Main.getInstance().getJokerController().giveJokersToPlayer(jokersLeft, event.getPlayer());
                 break;
+            case "TJoseph1014":
+                jokersLeft = Main.rItemStats.getJokerAmount() - Main.rItemStats.getJokersUsed();
+                Main.getInstance().getJokerController().giveJokersToPlayer(jokersLeft, event.getPlayer());
+                break;
+            case "GoldApfel2975":
+                jokersLeft = Main.jItemStats.getJokerAmount() - Main.jItemStats.getJokersUsed();
+                Main.getInstance().getJokerController().giveJokersToPlayer(jokersLeft, event.getPlayer());
+                break;
             default:
                 event.getPlayer().sendMessage("§cYou are not registered!");
         }

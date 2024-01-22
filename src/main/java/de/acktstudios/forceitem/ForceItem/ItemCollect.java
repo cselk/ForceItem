@@ -77,6 +77,36 @@ public class ItemCollect implements Listener {
                         player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
                     }
                     break;
+                case "TJoseph1014":
+
+                    if (event.getItem().getItemStack().getType().equals(Main.rItemStats.getCurrentItem().getType())) {
+
+                        player.sendMessage("§aDu hast gefunden: §6" + Main.rItemStats.getCurrentItem().getItemMeta().getDisplayName());
+                        player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
+
+                        ItemStack newItem = ForceItem.getRandomStack(Main.rItemStats);
+
+                        Main.rItemStats.addItem(newItem, false);
+
+                        player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                        player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                    }
+                    break;
+                case "GoldApfel2975":
+
+                    if (event.getItem().getItemStack().getType().equals(Main.jItemStats.getCurrentItem().getType())) {
+
+                        player.sendMessage("§aDu hast gefunden: §6" + Main.jItemStats.getCurrentItem().getItemMeta().getDisplayName());
+                        player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
+
+                        ItemStack newItem = ForceItem.getRandomStack(Main.jItemStats);
+
+                        Main.jItemStats.addItem(newItem, false);
+
+                        player.setPlayerListName(player.getDisplayName() + " [§6" + newItem.getItemMeta().getDisplayName() + "§f]");
+                        player.sendMessage("§aNächstes Item: §6" + newItem.getItemMeta().getDisplayName());
+                    }
+                    break;
                 default:
                     player.sendMessage("§cYou are not registered");
             }

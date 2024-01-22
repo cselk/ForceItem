@@ -37,10 +37,12 @@ public final class Main extends JavaPlugin {
 
     private Config config;
 
-    public static ItemStats aItemStats;
-    public static ItemStats cItemStats;
-    public static ItemStats kItemStats;
-    public static ItemStats tItemStats;
+    public static ItemStats aItemStats; // Anh Minh
+    public static ItemStats cItemStats; // Christoph
+    public static ItemStats kItemStats; // Kyri
+    public static ItemStats tItemStats; // Tizian
+    public static ItemStats rItemStats; // Raphael
+    public static ItemStats jItemStats; // Joni
 
     private static ItemStats[] itemStats;
 
@@ -63,7 +65,7 @@ public final class Main extends JavaPlugin {
         jokerController = new JokerController();
         tablistManager = new TablistManager();
 
-        String[] names = {"SharpChart92853", "Gamerspike11", "TastyHalumi", "TB_360"};
+        String[] names = {"SharpChart92853", "Gamerspike11", "TastyHalumi", "TB_360", "TJoseph1014", "GoldApfel2975"};
         ItemStats[] itemStats = new ItemStats[names.length];
 
         for (int i = 0; i < names.length; i++) {
@@ -77,6 +79,8 @@ public final class Main extends JavaPlugin {
         cItemStats = itemStats[1];
         kItemStats = itemStats[2];
         tItemStats = itemStats[3];
+        rItemStats = itemStats[4];
+        jItemStats = itemStats[5];
 
         getServer().getPluginManager().registerEvents(new ConnectionListener(), this);
         getServer().getPluginManager().registerEvents(new ItemCollect(), this);
@@ -100,6 +104,8 @@ public final class Main extends JavaPlugin {
         cItemStats.save();
         kItemStats.save();
         tItemStats.save();
+        rItemStats.save();
+        jItemStats.save();
 
         // ALL OVER CONFIG SAVE
         config.save();
